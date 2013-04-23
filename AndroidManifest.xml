@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="8"
         android:targetSdkVersion="17" />
 
     <application
@@ -22,7 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.calendarapp.TodoEntryActivity" android:label="@string/todo_entry_label"></activity>
+        <activity
+            android:name="com.example.calendarapp.TodoEntryActivity"
+            android:label="@string/title_activity_todo_entry" >
+        </activity>
     </application>
 
 </manifest>
