@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">DataStoreTest</string>
+    <string name="app_name">Calendar</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="todo_entry_datetime_hint">Date (YYYY/MM/DD HH:MM)</string>
+    <string name="todo_entry_todo_hint">Todo</string>
+    <string name="todo_entry_save">Save</string>
+    <string name="action_new_todo">New Todo</string>
+    <string name="todo_entry_label">New Todo</string>
 
 </resources>
