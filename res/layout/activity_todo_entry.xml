@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    <EditText android:id="@+id/todoName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/todo_entry_datetime_hint" />
+    <EditText android:id="@+id/dueDate"
+        android:inputType = "datetime"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/todo_entry_todo_hint" />
+    <SeekBar
+   		android:layout_width="fill_parent"
+   		android:layout_height="wrap_content"
+   		android:layout_margin="10dp"
+   		android:id="@+id/seekbar"
+   		android:max="100"
+   		android:progress="50"/>
+    <Button
+	    android:layout_width="wrap_content"
+   		android:layout_height="wrap_content"
+    	android:text="@string/todo_entry_save"
+    	android:onClick="sendMessage" />    
+</LinearLayout>
