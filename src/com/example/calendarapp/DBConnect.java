@@ -1,9 +1,12 @@
 package com.example.calendarapp;
 
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.*;
+import android.util.Log;
 
 public class DBConnect extends SQLiteOpenHelper {
 	 
@@ -21,6 +24,8 @@ public class DBConnect extends SQLiteOpenHelper {
     private static final String KEY_ID = "_id";
     private static final String KEY_TASK = "task";
     private static final String KEY_DATE = "date";
+    private static final String KEY_HARDNESS = "hardness";
+    private static final String KEY_TIME_REQ = "time_req";
     public static final String START_DATE = "0000/00/00 00:00";
     public static final String END_DATE = "9999/99/99 99:99";
  
@@ -33,7 +38,7 @@ public class DBConnect extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TODOS_TABLE = "CREATE TABLE " + TABLE_TODOS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_TASK + " TEXT,"
-                + KEY_DATE + " TEXT" + ")";
+                + KEY_DATE + " TEXT," + KEY_HARDNESS + " int," + KEY_TIME_REQ + " int" + ")";
         db.execSQL(CREATE_TODOS_TABLE);
     }
  
@@ -59,6 +64,8 @@ public class DBConnect extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_TASK, todo.getTodo()); // Contact Name
         values.put(KEY_DATE, todo.getDate().toString()); // Contact Phone
+        values.put(KEY_HARDNESS, todo.getHardness());
+        values.put(KEY_TIME_REQ, todo.getTime_req());
  
         // Inserting Row
         db.insert(TABLE_TODOS, null, values);
@@ -69,7 +76,7 @@ public class DBConnect extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
      
         Cursor cursor = db.query(TABLE_TODOS, new String[] { KEY_ID,
-                KEY_TASK, KEY_DATE }, KEY_TASK + "=?",
+                KEY_TASK, KEY_DATE, KEY_HARDNESS, KEY_TIME_REQ }, KEY_TASK + "=?",
                 new String[] { task }, null, null, KEY_DATE + " ASC");
         if (cursor != null)
             cursor.moveToFirst();
@@ -83,7 +90,7 @@ public class DBConnect extends SQLiteOpenHelper {
     	SQLiteDatabase db = this.getReadableDatabase();
         
         Cursor cursor = db.query(TABLE_TODOS, new String[] { KEY_ID,
-                KEY_TASK, KEY_DATE }, KEY_TASK + "=?",
+                KEY_TASK, KEY_DATE, KEY_HARDNESS, KEY_TIME_REQ }, KEY_TASK + "=?",
                 new String[] { task }, null, null, KEY_DATE + " ASC");
         return cursor;       
     }
@@ -92,10 +99,24 @@ public class DBConnect extends SQLiteOpenHelper {
     	SQLiteDatabase db = this.getReadableDatabase();
         
         Cursor cursor = db.query(TABLE_TODOS, new String[] { KEY_ID,
-                KEY_TASK, KEY_DATE }, KEY_DATE + ">\"" + start + 
+                KEY_TASK, KEY_DATE, KEY_HARDNESS, KEY_TIME_REQ }, KEY_DATE + ">\"" + start + 
                 	"\" AND " + KEY_DATE + "<\"" + end + "\"", 
                 		null, null, null, KEY_DATE + " ASC");
         return cursor;  
+    }
+    
+    public ArrayList<Todo> getTodoList(String start, String end) {
+    	Cursor c = getAllTodos(start, end);
+    	
+    	ArrayList<Todo> out = new ArrayList<Todo>();
+    	if (c.moveToFirst()){
+    		do {
+    			Log.v("DBC hardness test", ""+c.getInt(3));
+    			out.add(new Todo(c.getString(1), c.getString(2), c.getInt(3), c.getInt(4)));
+    		
+    		} while (c.moveToNext());
+    	}
+    	return out;
     }
     
     
