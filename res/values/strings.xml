@@ -10,5 +10,6 @@
     <string name="action_new_todo">New Todo</string>
     <string name="todo_entry_label">New Todo</string>
     <string name="title_activity_todo_entry">New Todo</string>
+    <string name="title_activity_todo_list">TodoListActivity</string>
 
 </resources>
