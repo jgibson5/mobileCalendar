@@ -1,14 +1,19 @@
-package com.example.calendarapp;
+package com.example.datastoretest;
 
 import java.io.Serializable;
 
 
 public class Todo implements Comparable<Todo>, Serializable {
-	
-	private static final long serialVersionUID = -2444631239476167713L;
+
+	private static final long serialVersionUID = -362836764856610952L;
 	private String todo;
 	private String date;
 	private String original;
+	private int hardness;
+	private int time_req;
+	/**
+	 * @param args
+	 */
 
 	public Todo(String info){
 		this.original = info;
@@ -21,6 +26,14 @@ public class Todo implements Comparable<Todo>, Serializable {
 		this.original = todo + ", "+ date;
 		this.todo = todo;
 		this.date = date;
+	}
+	
+	public Todo(String todo, String date, int hardness, int time_req) {
+		this.original = todo + ", "+ date;
+		this.todo = todo;
+		this.date = date;
+		this.setHardness(hardness);
+		this.setTime_req(time_req);
 	}
 	
 	/**
@@ -38,7 +51,7 @@ public class Todo implements Comparable<Todo>, Serializable {
 	}
 
 	public String toString(){
-		return this.original;
+		return this.original + "   " + this.hardness;
 	}
 	
 	public int compareTo(Todo t){
@@ -71,6 +84,34 @@ public class Todo implements Comparable<Todo>, Serializable {
 	 */
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	/**
+	 * @return the hardness
+	 */
+	public int getHardness() {
+		return hardness;
+	}
+
+	/**
+	 * @param hardness the hardness to set
+	 */
+	public void setHardness(int hardness) {
+		this.hardness = hardness;
+	}
+
+	/**
+	 * @return the time_req
+	 */
+	public int getTime_req() {
+		return time_req;
+	}
+
+	/**
+	 * @param time_req the time_req to set
+	 */
+	public void setTime_req(int time_req) {
+		this.time_req = time_req;
 	}
 
 }
