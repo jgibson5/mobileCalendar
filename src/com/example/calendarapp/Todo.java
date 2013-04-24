@@ -1,13 +1,14 @@
 package com.example.calendarapp;
 
+import java.io.Serializable;
 
-public class Todo implements Comparable<Todo>{
+
+public class Todo implements Comparable<Todo>, Serializable {
+	
+	private static final long serialVersionUID = -2444631239476167713L;
 	private String todo;
 	private String date;
 	private String original;
-	/**
-	 * @param args
-	 */
 
 	public Todo(String info){
 		this.original = info;
