@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.SeekBar;
 
 public class TodoEntryActivity extends Activity {
 
@@ -33,9 +34,11 @@ public class TodoEntryActivity extends Activity {
 		Intent intent = new Intent(this, MainActivity.class);
 		EditText todoText = (EditText) findViewById(R.id.todoName);
 		EditText dateText = (EditText) findViewById(R.id.dueDate);
+		SeekBar priBar = (SeekBar) findViewById(R.id.priorityBar);
+		int priority = priBar.getProgress();
 		String todoStr = todoText.getText().toString();
 		String dateStr = dateText.getText().toString();
-		Todo todo = new Todo (dateStr, todoStr);
+		Todo todo = new Todo (todoStr, dateStr, priority, 0);
 		intent.putExtra("com.example.calendarapp.Todo", todo);
 		setResult(RESULT_OK, intent);
 		finish();
