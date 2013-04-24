@@ -35,7 +35,7 @@ public class TodoEntryActivity extends Activity {
 		EditText dateText = (EditText) findViewById(R.id.dueDate);
 		String todoStr = todoText.getText().toString();
 		String dateStr = dateText.getText().toString();
-		Todo todo = new Todo (todoStr, dateStr);
+		Todo todo = new Todo (dateStr, todoStr);
 		intent.putExtra("com.example.calendarapp.Todo", todo);
 		setResult(RESULT_OK, intent);
 		finish();
