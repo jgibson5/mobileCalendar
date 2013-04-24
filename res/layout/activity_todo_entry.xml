@@ -4,7 +4,9 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-    <EditText android:id="@+id/dueDate"
+
+    <EditText
+        android:id="@+id/dueDate"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/todo_entry_datetime_hint"
@@ -18,17 +20,33 @@
         android:inputType="text|textAutoCorrect" />
 
     <SeekBar
-   		android:layout_width="fill_parent"
-   		android:layout_height="wrap_content"
-   		android:layout_margin="10dp"
-   		android:id="@+id/priorityBar"
-   		android:max="100"
-   		android:progress="50"/>
-
-    <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/priorityBar"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:onClick="saveTodo"
-        android:text="@string/todo_entry_save" />
-    
+        android:layout_margin="10dp"
+        android:max="100"
+        android:progress="50" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/cancelNewTodoButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="cancel"
+            android:text="@string/todo_entry_cancel" />
+
+        <Button
+            android:id="@+id/saveNewTodoButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="saveTodo"
+            android:text="@string/todo_entry_save" />
+    </LinearLayout>
+
 </LinearLayout>

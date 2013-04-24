@@ -13,5 +13,6 @@
     <string name="title_activity_todo_list">TodoListActivity</string>
     <string name="todo_goto_list">Todo List</string>
     <string name="todo_goto_entry">+ New</string>
+    <string name="todo_entry_cancel">Cancel</string>
 
 </resources>
