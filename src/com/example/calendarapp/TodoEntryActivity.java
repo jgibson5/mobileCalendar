@@ -28,19 +28,16 @@ public class TodoEntryActivity extends Activity {
 		return true;
 	}
 	
-	/** Called when the user clicks the Send button */
-	public void sendMessage(View view) {
-	    // Do something in response to button
-		//Intent intent = new Intent(this, DisplayMessageActivity.class);
-		EditText editText = (EditText) findViewById(R.id.todoName);
-		EditText editText2 = (EditText) findViewById(R.id.dueDate);
-		String todoName = editText.getText().toString();
-		String dueDate = editText2.getText().toString();
-		String message = todoName+dueDate;
-		//intent.putExtra(EXTRA_MESSAGE, message);
-		// To start an activity, call startActivity() and pass it your Intent.
-		//   The system receives this call and starts an instance of the Activity specified by the Intent.
-		//startActivity(intent);
+	/** Called when the user clicks the Save button */
+	public void saveTodo(View view) {
+		Intent intent = new Intent(this, MainActivity.class);
+		EditText todoText = (EditText) findViewById(R.id.todoName);
+		EditText dateText = (EditText) findViewById(R.id.dueDate);
+		String todoStr = todoText.getText().toString();
+		String dateStr = dateText.getText().toString();
+		Todo todo = new Todo (todoStr, dateStr);
+		//intent.
+		startActivity(intent);
 	}
 
 
