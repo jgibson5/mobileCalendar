@@ -1,23 +1,17 @@
 package com.example.calendarapp;
 
-import java.util.ArrayList;
-
 import com.example.calendarapp.R;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.support.v4.widget.CursorAdapter;
-import android.support.v4.widget.SimpleCursorAdapter;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 public class MainActivity extends Activity {
+	
+	public static final int NEW_TODO_REQUEST = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +20,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void gotoEntry(View view){
-		Intent intent = new Intent(this, TodoEntryActivity.class);
-    	startActivity(intent);
+		startTodoEntry();
 	}
 	
 	public void gotoList(View view){
@@ -46,12 +39,31 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	        case R.id.action_new_todo:
-	        	Intent intent = new Intent(this, TodoEntryActivity.class);
-	        	startActivity(intent);
+	        	startTodoEntry();
 	            return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		switch (requestCode) {
+			case NEW_TODO_REQUEST:
+				if (resultCode == RESULT_OK) {
+					DBConnect dbc = new DBConnect(this);
+					Todo todo = (Todo) intent.getSerializableExtra("com.example.calendarapp.Todo");
+					dbc.addTodo(todo);
+				}
+				break;
+			default:
+				break;
+		}
+	}
+	
+	private void startTodoEntry() {
+    	Intent intent = new Intent(this, TodoEntryActivity.class);
+    	startActivityForResult(intent, NEW_TODO_REQUEST);
 	}
 
 }

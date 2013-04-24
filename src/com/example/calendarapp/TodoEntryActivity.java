@@ -36,8 +36,9 @@ public class TodoEntryActivity extends Activity {
 		String todoStr = todoText.getText().toString();
 		String dateStr = dateText.getText().toString();
 		Todo todo = new Todo (todoStr, dateStr);
-		//intent.
-		startActivity(intent);
+		intent.putExtra("com.example.calendarapp.Todo", todo);
+		setResult(RESULT_OK, intent);
+		finish();
 	}
 
 
