@@ -23,16 +23,16 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		DBConnect dbc = new DBConnect(this);
-//		Todo t1 = new Todo("Brief Android, 2013/04/16 15:00");
-//		Todo t2 = new Todo("Brief Android, 2013/04/14 15:00");
-//		Todo t3 = new Todo("Brief Android, 2013/06/14 15:00");
-//		dbc.addTodo(t1);
-//		dbc.addTodo(t2);
-//		dbc.addTodo(t3);
-//		ArrayList<String> todoList = new ArrayList<String>();
-//		todoList.add(t1.toString());
-//		todoList.add(t2.toString());
-//		todoList.add(t3.toString());
+		Todo t1 = new Todo("Brief Android, 2013/04/16 15:00");
+		Todo t2 = new Todo("Brief Android, 2013/04/14 15:00");
+		Todo t3 = new Todo("Brief Android, 2013/06/14 15:00");
+		dbc.addTodo(t1);
+		dbc.addTodo(t2);
+		dbc.addTodo(t3);
+		ArrayList<String> todoList = new ArrayList<String>();
+		todoList.add(t1.toString());
+		todoList.add(t2.toString());
+		todoList.add(t3.toString());
 		
 		Cursor c = dbc.getAllTodos(DBConnect.START_DATE, DBConnect.END_DATE);
 		String[] from = new String[] { "task", "date" };
