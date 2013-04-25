@@ -8,7 +8,6 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +28,6 @@ public class TodoEntryActivity extends Activity {
 		setContentView(R.layout.activity_todo_entry);
 		getStringResources();
 		SeekBar durationBar = (SeekBar) findViewById(R.id.durationBar);
-		String s = this.getResources().getString(R.string.duration_value0);
 		durationBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 	        @Override
 	        public void onStopTrackingTouch(SeekBar seekBar) {
@@ -47,7 +45,9 @@ public class TodoEntryActivity extends Activity {
 	}
 	
 	private void getStringResources(){
-		durationsTextList = new ArrayList<String>(){{
+		durationsTextList = new ArrayList<String>(){
+			private static final long serialVersionUID = 1L;
+		{
 	    	add(getString(R.string.duration_value0));
 	    	add(getString(R.string.duration_value1));
 	    	add(getString(R.string.duration_value2));
