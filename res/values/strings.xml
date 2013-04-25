@@ -14,5 +14,16 @@
     <string name="todo_goto_list">Todo List</string>
     <string name="todo_goto_entry">+ New</string>
     <string name="todo_entry_cancel">Cancel</string>
-
+    <string name="priority_value">How much focus will this require?</string>
+    <string name="duration_value0">This will take 5 minutes</string>
+    <string name="duration_value1">This will take 10 minutes</string>
+    <string name="duration_value2">This will take 15 minutes</string>
+	<string name="duration_value3">This will take 30 minutes</string>
+	<string name="duration_value4">This will take 45 minutes</string>
+	<string name="duration_value5">This will take an hour</string>
+	<string name="duration_value6">This will take an hour and a half</string>
+	<string name="duration_value7">This will take two hours</string>
+	<string name="duration_value8">This will take four hours</string>
+	<string name="duration_value9">This will take eight hours</string>
+	<string name="duration_value10">This will take an entire day</string>
 </resources>

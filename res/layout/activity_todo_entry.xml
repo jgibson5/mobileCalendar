@@ -19,6 +19,13 @@
         android:hint="@string/todo_entry_todo_hint"
         android:inputType="text|textAutoCorrect" />
 
+    <TextView
+        android:id="@+id/priorityText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/priority_value"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <SeekBar
         android:id="@+id/priorityBar"
         android:layout_width="fill_parent"
@@ -26,6 +33,21 @@
         android:layout_margin="10dp"
         android:max="100"
         android:progress="50" />
+
+    <TextView
+        android:id="@+id/durationText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/duration_value5"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <SeekBar
+        android:id="@+id/durationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:max="10"
+        android:progress="5" />
 
     <LinearLayout
         android:layout_width="fill_parent"
