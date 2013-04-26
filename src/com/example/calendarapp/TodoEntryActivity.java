@@ -1,5 +1,7 @@
 package com.example.calendarapp;
 
+import java.util.ArrayList;
+
 import com.example.calendarapp.R;
 
 import android.app.ActionBar;
@@ -11,17 +13,53 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 public class TodoEntryActivity extends Activity {
 
 	// In order for the next activity to query the extra data, 
 	//   you should define the key for your intent's extra using a public constant
     public final static String EXTRA_MESSAGE = "com.example.calendarapp.MESSAGE";
+    private ArrayList<String> durationsTextList;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_todo_entry);
+		getStringResources();
+		SeekBar durationBar = (SeekBar) findViewById(R.id.durationBar);
+		durationBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+	        @Override
+	        public void onStopTrackingTouch(SeekBar seekBar) {
+	        }
+	        @Override
+	        public void onStartTrackingTouch(SeekBar seekBar) {
+	        }
+	        @Override
+	        public void onProgressChanged(SeekBar seekBar, int progress,
+	                boolean fromUser) {
+	        	TextView durationText = (TextView) findViewById(R.id.durationText);
+	    		durationText.setText(durationsTextList.get(progress));
+	        }
+	   });
+	}
+	
+	private void getStringResources(){
+		durationsTextList = new ArrayList<String>(){
+			private static final long serialVersionUID = 1L;
+		{
+	    	add(getString(R.string.duration_value0));
+	    	add(getString(R.string.duration_value1));
+	    	add(getString(R.string.duration_value2));
+	    	add(getString(R.string.duration_value3));
+	    	add(getString(R.string.duration_value4));
+	    	add(getString(R.string.duration_value5));
+	    	add(getString(R.string.duration_value6));
+	    	add(getString(R.string.duration_value7));
+	    	add(getString(R.string.duration_value8));
+	    	add(getString(R.string.duration_value9));
+	    	add(getString(R.string.duration_value10));
+	    }};
 	}
 
 	@Override
