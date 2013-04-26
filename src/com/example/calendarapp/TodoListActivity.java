@@ -23,11 +23,7 @@ public class TodoListActivity extends Activity {
 
 		ListView listView = (ListView) findViewById(R.id.listView1);
 
-		ArrayList<String> stringList = new ArrayList<String>();
-		for (Todo item : list) {
-			stringList.add(item.toString());
-		}
-		ArrayAdapter<String> testAdapter = new ArrayAdapter<String>(this, R.layout.todo_text_view, R.id.taskView, stringList);
+		TodoListViewAdapter testAdapter = new TodoListViewAdapter(this, R.layout.todo_text_view, list);
 		listView.setAdapter(testAdapter);
 	}
 

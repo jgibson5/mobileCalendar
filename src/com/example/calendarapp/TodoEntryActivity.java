@@ -21,7 +21,8 @@ public class TodoEntryActivity extends Activity {
 	//   you should define the key for your intent's extra using a public constant
     public final static String EXTRA_MESSAGE = "com.example.calendarapp.MESSAGE";
     private ArrayList<String> durationsTextList;
-	
+    private Integer[] durationsValueList = {5, 10, 15, 30, 45, 60, 90, 120, 240, 480, 1000};
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -92,10 +93,12 @@ public class TodoEntryActivity extends Activity {
 		EditText todoText = (EditText) findViewById(R.id.todoName);
 		EditText dateText = (EditText) findViewById(R.id.dueDate);
 		SeekBar priBar = (SeekBar) findViewById(R.id.priorityBar);
+		SeekBar durBar = (SeekBar) findViewById(R.id.durationBar);
 		int priority = priBar.getProgress();
+		int duration = durBar.getProgress();
 		String todoStr = todoText.getText().toString();
 		String dateStr = dateText.getText().toString();
-		Todo todo = new Todo (todoStr, dateStr, priority, 0);
+		Todo todo = new Todo (todoStr, dateStr, priority, durationsValueList[duration]);
 		intent.putExtra("com.example.calendarapp.Todo", todo);
 		setResult(RESULT_OK, intent);
 		finish();
