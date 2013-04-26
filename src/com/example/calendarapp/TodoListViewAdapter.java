@@ -12,6 +12,10 @@ import android.widget.TextView;
 
 public class TodoListViewAdapter extends ArrayAdapter<Todo>{
 	Context context;
+	private int break1 = 20;
+	private int break2 = 40;
+	private int break3 = 60;
+	private int break4 = 80;
 	
 	public TodoListViewAdapter(Context context, int resourceId,
             List<Todo> items) {
@@ -41,7 +45,26 @@ public class TodoListViewAdapter extends ArrayAdapter<Todo>{
             convertView.setTag(holder);
         } else
             holder = (ViewHolder) convertView.getTag();
- 
+        int focus = todo.getHardness();
+        int color = context.getResources().getColor(R.color.white); 
+        if(focus > break1){
+        	if(focus > break2){
+        		if(focus > break3){
+        			if(focus > break4){
+        				color = context.getResources().getColor(R.color.list_blue0);
+        			}else{
+        				color = context.getResources().getColor(R.color.list_blue1);
+        			}
+        		}else{
+        			color = context.getResources().getColor(R.color.list_blue2);
+        		}
+        	}else{
+        		color = context.getResources().getColor(R.color.list_blue3);
+        	}
+        }else{
+        	color = context.getResources().getColor(R.color.white);
+        }
+        convertView.setBackgroundColor(color);
         holder.taskView.setText(todo.getTodo());
         holder.dateView.setText(todo.getDate());
         holder.time_reqView.setText(""+todo.getTime_req());
