@@ -1,27 +1,33 @@
 package com.example.calendarapp;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.database.Cursor;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.Menu;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class TodoListActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_todo_list);
-		
-		// Connect to database and list all activities.
 		DBConnect dbc = new DBConnect(this);
-		Cursor c = dbc.getAllTodos(DBConnect.START_DATE, DBConnect.END_DATE);
-		String[] from = new String[] { "task", "date" };
-		int[] to = new int[] { R.id.taskView, R.id.dateView };
+		ArrayList<Todo> list = dbc.getAllTodos(DBConnect.START_DATE, DBConnect.END_DATE);
+
 		ListView listView = (ListView) findViewById(R.id.listView1);
-		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.todo_text_view, c, from, to, 0);
-		listView.setAdapter(adapter);
+
+		ArrayList<String> stringList = new ArrayList<String>();
+		for (Todo item : list) {
+			stringList.add(item.toString());
+		}
+		ArrayAdapter<String> testAdapter = new ArrayAdapter<String>(this, R.layout.todo_text_view, R.id.taskView, stringList);
+		listView.setAdapter(testAdapter);
 	}
 
 	@Override

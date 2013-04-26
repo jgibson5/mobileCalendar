@@ -86,29 +86,30 @@ public class DBConnect extends SQLiteOpenHelper {
         return todo;
     }
     
-    public Cursor getTodos(String task) {
+    public ArrayList<Todo> getTodos(String task) {
     	SQLiteDatabase db = this.getReadableDatabase();
         
         Cursor cursor = db.query(TABLE_TODOS, new String[] { KEY_ID,
                 KEY_TASK, KEY_DATE, KEY_HARDNESS, KEY_TIME_REQ }, KEY_TASK + "=?",
                 new String[] { task }, null, null, KEY_DATE + " ASC");
-        return cursor;       
+        return convertCursorToArrayList(cursor);       
     }
     
-    public Cursor getAllTodos(String start, String end){
+    public ArrayList<Todo> getAllTodos(String start, String end){
     	SQLiteDatabase db = this.getReadableDatabase();
         
         Cursor cursor = db.query(TABLE_TODOS, new String[] { KEY_ID,
                 KEY_TASK, KEY_DATE, KEY_HARDNESS, KEY_TIME_REQ }, KEY_DATE + ">\"" + start + 
                 	"\" AND " + KEY_DATE + "<\"" + end + "\"", 
                 		null, null, null, KEY_DATE + " ASC");
-        return cursor;  
+        return convertCursorToArrayList(cursor);  
     }
     
-    public ArrayList<Todo> getTodoList(String start, String end) {
-    	Cursor c = getAllTodos(start, end);
-    	
-    	ArrayList<Todo> out = new ArrayList<Todo>();
+    /*
+ *     public ArrayList<Todo> getTodoList(String start, String end) {
+     	Cursor c = getAllTodos(start, end);
+    	return convertCursorToArrayList(c);
+    	/*
     	if (c.moveToFirst()){
     		do {
     			Log.v("DBC hardness test", ""+c.getInt(3));
@@ -116,9 +117,16 @@ public class DBConnect extends SQLiteOpenHelper {
     		
     		} while (c.moveToNext());
     	}
-    	return out;
     }
+*/
     
+    public ArrayList<Todo> convertCursorToArrayList(Cursor c) {
+    	ArrayList<Todo> list = new ArrayList<Todo>();
+    	for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+    		list.add(new Todo(c.getString(1), c.getString(2), c.getInt(3), c.getInt(4)));
+    	}
+    	return list;
+    }
     
     
 }
