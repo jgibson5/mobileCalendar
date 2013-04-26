@@ -1,6 +1,7 @@
 package com.example.calendarapp;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import android.os.Bundle;
 import android.app.ActionBar;
@@ -20,7 +21,7 @@ public class TodoListActivity extends Activity {
 		setContentView(R.layout.activity_todo_list);
 		DBConnect dbc = new DBConnect(this);
 		ArrayList<Todo> list = dbc.getAllTodos(DBConnect.START_DATE, DBConnect.END_DATE);
-
+		Collections.sort(list, new TodoHardnessComparator());
 		ListView listView = (ListView) findViewById(R.id.listView1);
 
 		TodoListViewAdapter testAdapter = new TodoListViewAdapter(this, R.layout.todo_text_view, list);

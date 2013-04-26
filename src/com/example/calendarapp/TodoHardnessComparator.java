@@ -19,7 +19,7 @@ public class TodoHardnessComparator implements Comparator<Todo>{
 		} else if(todo0.getDate().substring(0, 10).compareTo(todo1.getDate().substring(0, 10)) < 0) {
 			return -1;
 		} else {
-			return todo0.getHardness() - todo1.getHardness();
+			return todo1.getHardness() - todo0.getHardness();
 		}		
 	}
 
