@@ -9,11 +9,11 @@
     tools:context=".TodoListActivity" >
 
     
-    <ListView
-        android:id="@+id/listView1"
+    <com.example.calendarapp.TodoListView
+        android:id="@+id/todoListView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
-    </ListView>
+    </com.example.calendarapp.TodoListView>
     
 
 </RelativeLayout>

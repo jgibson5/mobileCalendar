@@ -22,7 +22,7 @@ public class TodoListActivity extends Activity {
 		DBConnect dbc = new DBConnect(this);
 		ArrayList<Todo> list = dbc.getAllTodos(DBConnect.START_DATE, DBConnect.END_DATE);
 		Collections.sort(list, new TodoHardnessComparator());
-		ListView listView = (ListView) findViewById(R.id.listView1);
+		TodoListView listView = (TodoListView) findViewById(R.id.todoListView);
 
 		TodoListViewAdapter testAdapter = new TodoListViewAdapter(this, R.layout.todo_text_view, list);
 		listView.setAdapter(testAdapter);
