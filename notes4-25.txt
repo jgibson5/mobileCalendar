@@ -1,0 +1,4 @@
+Need a class that can hold the info for events and todos.
+	-Array (indices represent time?)
+	-Finds times for todos
+		-Prioritize hardness or efficiency? (decided efficiency)
