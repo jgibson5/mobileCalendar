@@ -29,6 +29,21 @@ public class DateTime implements Serializable, Cloneable, Comparable<DateTime> {
 		millis = dateFormat.parse(date).getTime();
 	}
 	
+	public void addMilliseconds(long milliseconds) {
+		this.millis += milliseconds;
+	}
+	
+	public void addSeconds(long seconds) {
+		this.millis += seconds * 1000;
+	}
+
+	public void addMinutes(long minutes) {
+		this.millis += minutes * 60000;
+	}
+
+	public void addHours(long hours) {
+		this.millis += hours * 3600000;
+	}
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) return false;
