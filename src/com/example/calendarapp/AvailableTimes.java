@@ -13,7 +13,11 @@ public class AvailableTimes {
 		start = new DateTime();
 		end = start.clone();
 		end.addHours(24);
+		for (int i = 0; i < 96; i++) {
+			times.add(true);
+		}
 		paint(events);
+		System.out.println(times);
 	}
 	
 	public void paint(Iterable<Event> events) {
@@ -56,4 +60,9 @@ public class AvailableTimes {
 		}
 		return null;
 	}
+	
+	public void testGetFirstTime(int duration) {
+		System.out.println(getFirstTime(30));
+	}
+	
 }
