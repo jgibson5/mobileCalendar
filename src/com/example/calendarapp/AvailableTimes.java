@@ -1,15 +1,12 @@
 package com.example.calendarapp;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class AvailableTimes {
-	List<Boolean> times;
+	BitList times;
 	DateTime start;
 	DateTime end;
 	
-	public AvailableTimes(List<Event> events) {
-		times = new ArrayList<Boolean>();
+	public AvailableTimes(Iterable<Event> events) {
+		times = new BitList();
 		start = new DateTime();
 		end = start.clone();
 		end.addHours(24);
@@ -17,7 +14,6 @@ public class AvailableTimes {
 			times.add(true);
 		}
 		paint(events);
-		System.out.println(times);
 	}
 	
 	public void paint(Iterable<Event> events) {
@@ -27,13 +23,15 @@ public class AvailableTimes {
 	}
 	
 	public void paint(Event event) {
-		DateTime eventStart = event.getStart();
-		DateTime eventEnd = event.getEnd();
+		paint(event.getStart(), event.getEnd());
+	}
+	
+	public void paint(DateTime paintStart, DateTime paintEnd) {
 		DateTime time = start.clone();
 		
 		for (int i = 0; i < times.size(); i++) {
-			if (time.compareTo(eventEnd) > 0) break;
-			if (time.compareTo(eventStart) > 0) times.set(i, false);
+			if (time.compareTo(paintEnd) > 0) break;
+			if (time.compareTo(paintStart) > 0) times.set(i, false);
 			time.addMinutes(15);
 		}
 	}
@@ -55,7 +53,10 @@ public class AvailableTimes {
 				count = 0;
 				blockStart = null;
 			}
-			if (count >= countNeeded) return blockStart;
+			if (count >= countNeeded) {
+				paint (blockStart, time);
+				return blockStart;
+			}
 			time.addMinutes(15);
 		}
 		return null;
