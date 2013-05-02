@@ -36,6 +36,10 @@ public class AvailableTimes {
 		}
 	}
 	
+	public PlacedTodo placedTodo(Todo todo) {
+		return new PlacedTodo(todo, getFirstTime(todo.getTime_req()));
+	}
+	
 	public DateTime getFirstTime(int minutes) {
 		int countNeeded = (minutes / 15) + 1;
 		int count = 0;
