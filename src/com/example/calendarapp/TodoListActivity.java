@@ -20,8 +20,23 @@ public class TodoListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_todo_list);
 		DBConnect dbc = new DBConnect(this);
+		//get the list of todos
 		ArrayList<Todo> list = dbc.getAllTodos(DBConnect.START_DATE, DBConnect.END_DATE);
+		//prioritize the todos
 		Collections.sort(list, new TodoHardnessComparator());
+		//get the list of events
+		
+		//create final list of todos and events
+		ArrayList<Placeable> todoable = new ArrayList<Placeable>();
+		
+		//create AvailableTimes object with events
+		
+		// for each of the prioritized list of todos
+		// toss it in AvailableTimes and insert todo with time into todoable
+		// order that list, and return the names of the todos alone
+		
+		// doesn't include printing out event....
+		
 		TodoListView listView = (TodoListView) findViewById(R.id.todoListView);
 
 		TodoListViewAdapter testAdapter = new TodoListViewAdapter(this, R.layout.todo_text_view, list);

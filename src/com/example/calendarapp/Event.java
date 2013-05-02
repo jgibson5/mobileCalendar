@@ -5,7 +5,7 @@ import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Event implements Serializable {
+public class Event extends Placeable implements Serializable{
 	private static final long serialVersionUID = -5185389970304553876L;
 	
 	private DateTime start;
@@ -89,5 +89,11 @@ public class Event implements Serializable {
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	@Override
+	void doEdit() {
+		// do nothing b/c it's an event
+		
 	}
 }
