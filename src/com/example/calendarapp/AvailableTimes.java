@@ -22,7 +22,7 @@ public class AvailableTimes {
 		}
 	}
 	
-	public void paint(Event event) {
+	public void paint(Placeable event) {
 		paint(event.getStart(), event.getEnd());
 	}
 	
@@ -37,7 +37,9 @@ public class AvailableTimes {
 	}
 	
 	public PlacedTodo placedTodo(Todo todo) {
-		return new PlacedTodo(todo, getFirstTime(todo.getTime_req()));
+		PlacedTodo placedTodo = new PlacedTodo(todo, getFirstTime(todo.getTime_req()));
+		paint(placedTodo.getStart(), placedTodo.getEnd());
+		return placedTodo;
 	}
 	
 	public DateTime getFirstTime(int minutes) {
