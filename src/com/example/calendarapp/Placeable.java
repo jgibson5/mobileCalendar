@@ -7,7 +7,7 @@ package com.example.calendarapp;
  * @author hari
  *
  */
-public abstract class Placeable {
+public abstract class Placeable implements Comparable<Placeable> {
 
 	protected String description;
 	protected DateTime start;
@@ -37,5 +37,9 @@ public abstract class Placeable {
 	}
 	
 	public abstract int getHardness();
+	
+	public int compareTo(Placeable another) {
+		return start.compareTo(another.getStart());
+	}
 
 }
