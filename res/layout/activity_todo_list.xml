@@ -8,10 +8,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".TodoListActivity" >
 
-    <com.example.calendarapp.TodoListView
+    <com.example.calendarapp.PlaceableListView
         android:id="@+id/todoListView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
-    </com.example.calendarapp.TodoListView>
+    </com.example.calendarapp.PlaceableListView>
 
 </RelativeLayout>

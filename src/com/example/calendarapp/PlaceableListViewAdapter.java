@@ -10,42 +10,42 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class TodoListViewAdapter extends ArrayAdapter<Todo>{
+public class PlaceableListViewAdapter extends ArrayAdapter<Placeable>{
 	Context context;
 	private int break1 = 20;
 	private int break2 = 40;
 	private int break3 = 60;
 	private int break4 = 80;
 	
-	public TodoListViewAdapter(Context context, int resourceId,
-            List<Todo> items) {
+	public PlaceableListViewAdapter(Context context, int resourceId,
+            List<Placeable> items) {
         super(context, resourceId, items);
         this.context = context;
     }
  
     /*private view holder class*/
     private class ViewHolder {
-        TextView taskView;
-        TextView dateView;
-        TextView time_reqView;
+        TextView descriptionView;
+        TextView startView;
+        TextView durationView;
     }
  
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
-        Todo todo = getItem(position);
+        Placeable placeable = getItem(position);
  
         LayoutInflater mInflater = (LayoutInflater) context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.todo_text_view, null);
+            convertView = mInflater.inflate(R.layout.placeable_list_text_view, null);
             holder = new ViewHolder();
-            holder.taskView = (TextView) convertView.findViewById(R.id.taskView);
-            holder.dateView = (TextView) convertView.findViewById(R.id.dateView);
-            holder.time_reqView = (TextView) convertView.findViewById(R.id.time_reqView);
+            holder.descriptionView = (TextView) convertView.findViewById(R.id.placeableListDescriptionView);
+            holder.startView = (TextView) convertView.findViewById(R.id.placeableListStartView);
+            holder.durationView = (TextView) convertView.findViewById(R.id.placeableListDurationView);
             convertView.setTag(holder);
         } else
             holder = (ViewHolder) convertView.getTag();
-        int focus = todo.getHardness();
+        int focus = placeable.getHardness();
         int color = context.getResources().getColor(R.color.white); 
         if(focus > break1){
         	if(focus > break2){
@@ -65,9 +65,9 @@ public class TodoListViewAdapter extends ArrayAdapter<Todo>{
         	color = context.getResources().getColor(R.color.white);
         }
         convertView.setBackgroundColor(color);
-        holder.taskView.setText(todo.getTodo());
-        holder.dateView.setText(todo.getDate());
-        holder.time_reqView.setText(""+todo.getTime_req());
+        holder.descriptionView.setText(placeable.getDescription());
+        holder.startView.setText(placeable.getStart().toString());
+        holder.durationView.setText(placeable.getDuration().toString());
  
         return convertView;
     }

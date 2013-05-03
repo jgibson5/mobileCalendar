@@ -4,21 +4,21 @@
     android:layout_height="wrap_content"
     android:background="@color/white">
 	<TextView
-	    android:id="@+id/taskView"
+	    android:id="@+id/placeableListDescriptionView"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:textIsSelectable="false">
 	    
 	</TextView>
 	<TextView
-	    android:id="@+id/dateView"
+	    android:id="@+id/placeableListStartView"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:textIsSelectable="false">
 	    
 	</TextView>
 	<TextView
-	    android:id="@+id/time_reqView"
+	    android:id="@+id/placeableListDurationView"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:textIsSelectable="false">

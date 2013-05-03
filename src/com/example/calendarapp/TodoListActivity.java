@@ -8,9 +8,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
-import android.widget.ArrayAdapter;
 import android.view.MenuItem;
-import android.widget.ListView;
 
 public class TodoListActivity extends Activity {
 
@@ -27,7 +25,7 @@ public class TodoListActivity extends Activity {
 		//get the list of events
 		
 		//create final list of todos and events
-		ArrayList<Placeable> todoable = new ArrayList<Placeable>();
+		ArrayList<Placeable> placeable = new ArrayList<Placeable>();
 		
 		//create AvailableTimes object with events
 		
@@ -37,9 +35,9 @@ public class TodoListActivity extends Activity {
 		
 		// doesn't include printing out event....
 		
-		TodoListView listView = (TodoListView) findViewById(R.id.todoListView);
+		PlaceableListView listView = (PlaceableListView) findViewById(R.id.todoListView);
 
-		TodoListViewAdapter testAdapter = new TodoListViewAdapter(this, R.layout.todo_text_view, list);
+		PlaceableListViewAdapter testAdapter = new PlaceableListViewAdapter(this, R.layout.placeable_list_text_view, placeable);
 		listView.setAdapter(testAdapter);
 	}
 
