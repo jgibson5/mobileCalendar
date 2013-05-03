@@ -66,5 +66,9 @@ public class DateTime implements Serializable, Cloneable, Comparable<DateTime> {
 		Date date = new Date(millis);
 		return dateFormat.format(date);
 	}
+	
+	public long getMillis() {
+		return this.millis;
+	}
 
 }

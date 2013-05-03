@@ -28,4 +28,10 @@ public class PlacedTodo extends Placeable{
 		
 	}
 
+	@Override
+	public int getHardness() {
+		// TODO Auto-generated method stub
+		return todo.getHardness();
+	}
+
 }

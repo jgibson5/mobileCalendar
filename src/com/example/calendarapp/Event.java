@@ -96,4 +96,9 @@ public class Event extends Placeable implements Serializable{
 		// do nothing b/c it's an event
 		
 	}
+
+	@Override
+	public int getHardness() {
+		return 0;
+	}
 }
