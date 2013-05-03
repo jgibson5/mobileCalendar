@@ -1,38 +1,50 @@
 package com.example.calendarapp;
 
 import java.text.SimpleDateFormat;
+import java.text.DecimalFormat;
+import java.math.RoundingMode;
 import java.util.Calendar;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
 
 public class EventGetter {
-	public static void getEvents(Context context, int cal_id){           
+	
+	private static final long time = System.currentTimeMillis();
+	
+	
+	public static ArrayList<Event> getEvents(Context context, int cal_id){
+		DecimalFormat format = new DecimalFormat("######0000");
+		format.setRoundingMode(RoundingMode.FLOOR);
+		String s = format.format(time);
+		long startDate = Long.parseLong(s);
+		return EventGetter.getEvents(context, cal_id, startDate);
+	}
+	
+	public static ArrayList<Event> getEvents(Context context, int cal_id, long startDate){
+		
+		long endDate = startDate + 86400000;
+		
 		Cursor cursor = context.getContentResolver().query(
 				Uri.parse("content://com.android.calendar/events"),
                 new String[] { "calendar_id", "title", "description",
-            "dtstart", "dtend", "duration", "eventLocation" }, "calendar_id=" + cal_id, 
+            "dtstart", "dtend", "duration", "eventLocation" }, "dtstart<="  + startDate + " and dtend>=" + endDate, 
             null, "dtstart ASC");
-		Log.v("size", ""+cursor.getCount());
-		if(cursor.moveToNext()){
-			do {
-				for (int i =0; i<7;i++){
-					String thing = cursor.getString(i);
-					if (thing != null){
-						//Log.v(cursor.getColumnName(i), thing);
-					}
+		ArrayList<Event> list = new ArrayList<Event>;
+		
+		for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+			long start = cursor.getLong();
+			long end = cursor.getLong();
+			String duration = cursor.getString();
+			String description = cursor.getString();
+			if(start >= startDate && description!=null){
+				if (end <= endDate){
+					list.add(new Event(start, end, description));
+				}else{
+					list.add(new Event(start, duration, description));
 				}
-			} while (cursor.moveToNext());
+			}
 		}
-	}
-	
-	public static String getDate(long milliSeconds) {
-	    SimpleDateFormat formatter = new SimpleDateFormat(
-	            "yyyy/MM/dd hh:mm");
-	    Calendar calendar = Calendar.getInstance();
-	    calendar.setTimeInMillis(milliSeconds);
-	    return formatter.format(calendar.getTime());
-	}
+		return list;
 }
