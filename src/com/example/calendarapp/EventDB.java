@@ -16,10 +16,10 @@ public class EventDB extends SQLiteOpenHelper {
     // Database Name
     private static final String DATABASE_NAME = "eventManager";
  
-    // Contacts table name
+    // Events table name
     private static final String TABLE_EVENTS = "events";
  
-    // Contacts Table Columns names
+    // Events Table Columns names
     private static final String KEY_ID = "_id";
     private static final String KEY_START = "task";
     private static final String KEY_END = "date";
@@ -82,7 +82,7 @@ public class EventDB extends SQLiteOpenHelper {
      */
     public Event getEvent(String task) {
         SQLiteDatabase db = this.getReadableDatabase();
-     
+      //Submit query and get cursor.
         Cursor cursor = db.query(TABLE_EVENTS, new String[] { KEY_ID,
                 KEY_START, KEY_END, KEY_DESCRIPTION}, KEY_START + "=?",
                 new String[] { task }, null, null, KEY_END + " ASC");
@@ -101,7 +101,7 @@ public class EventDB extends SQLiteOpenHelper {
      */
     public ArrayList<Event> getEvents(String task) {
     	SQLiteDatabase db = this.getReadableDatabase();
-        
+    	//Submit query and get cursor.
         Cursor cursor = db.query(TABLE_EVENTS, new String[] { KEY_ID,
                 KEY_START, KEY_END, KEY_DESCRIPTION}, KEY_START + "=?",
                 new String[] { task }, null, null, KEY_END + " ASC");
@@ -116,7 +116,7 @@ public class EventDB extends SQLiteOpenHelper {
      */
     public ArrayList<Event> getAllEvents(String start, String end){
     	SQLiteDatabase db = this.getReadableDatabase();
-        
+    	//Submit query and get cursor.
         Cursor cursor = db.query(TABLE_EVENTS, new String[] { KEY_ID,
                 KEY_START, KEY_END, KEY_DESCRIPTION}, KEY_END + ">\"" + start + 
                 	"\" AND " + KEY_END + "<\"" + end + "\"", 
@@ -131,7 +131,9 @@ public class EventDB extends SQLiteOpenHelper {
      */
     public ArrayList<Event> convertCursorToArrayList(Cursor c) {
     	ArrayList<Event> list = new ArrayList<Event>();
+    	//Iterate over events in cursor.
     	for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+    		//Add each event to the list.
     		list.add(new Event(c.getLong(1), c.getLong(2), c.getString(3)));
     	}
     	return list;

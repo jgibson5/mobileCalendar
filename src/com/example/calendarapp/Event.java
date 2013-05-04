@@ -69,10 +69,12 @@ public class Event extends Placeable implements Serializable{
 	 */
 	public Long endFromDuration(Long start, String duration){
 		Long nd = start;
+		//Define regex pattern to match duration format.
 		Pattern pattern = Pattern.compile("([0-9]*[D|H|M|S])");
 		Matcher matcher = pattern.matcher(duration);
 		while (matcher.find()) {
             String group = matcher.group();
+            //Because 1.6 doesn't support switch case with strings...
             if (group.charAt(group.length()-1) == 'D'){
             	String numbers = group.substring(0, group.length()-1);
             	int millis = Integer.parseInt(numbers);

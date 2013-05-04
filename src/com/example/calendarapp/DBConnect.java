@@ -16,10 +16,10 @@ public class DBConnect extends SQLiteOpenHelper {
     // Database Name
     private static final String DATABASE_NAME = "todoManager";
  
-    // Contacts table name
+    // Todo table name
     private static final String TABLE_TODOS = "todos";
  
-    // Contacts Table Columns names
+    // Todo Table Columns names
     private static final String KEY_ID = "_id";
     private static final String KEY_TASK = "task";
     private static final String KEY_DATE = "date";
@@ -53,11 +53,6 @@ public class DBConnect extends SQLiteOpenHelper {
     
     
     /**
-     * All CRUD(Create, Read, Update, Delete) Operations
-     */
- 
-    
-    /**
      * Add a single Todo to the database.
      * @param todo
      */
@@ -65,8 +60,8 @@ public class DBConnect extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
  
         ContentValues values = new ContentValues();
-        values.put(KEY_TASK, todo.getTodo()); // Contact Name
-        values.put(KEY_DATE, todo.getDate().toString()); // Contact Phone
+        values.put(KEY_TASK, todo.getTodo());
+        values.put(KEY_DATE, todo.getDate().toString());
         values.put(KEY_HARDNESS, todo.getHardness());
         values.put(KEY_TIME_REQ, todo.getTime_req());
  
@@ -82,15 +77,15 @@ public class DBConnect extends SQLiteOpenHelper {
      */
     public Todo getTodo(String task) {
         SQLiteDatabase db = this.getReadableDatabase();
-     
+        //Submit query and get cursor.
         Cursor cursor = db.query(TABLE_TODOS, new String[] { KEY_ID,
                 KEY_TASK, KEY_DATE, KEY_HARDNESS, KEY_TIME_REQ }, KEY_TASK + "=?",
                 new String[] { task }, null, null, KEY_DATE + " ASC");
+        //Move to first item in cursor.
         if (cursor != null)
             cursor.moveToFirst();
-     
+        // Make Todo object from cursor entry.
         Todo todo = new Todo(cursor.getString(1), cursor.getString(2));
-        // return contact
         return todo;
     }
     
@@ -101,7 +96,7 @@ public class DBConnect extends SQLiteOpenHelper {
      */
     public ArrayList<Todo> getTodos(String task) {
     	SQLiteDatabase db = this.getReadableDatabase();
-        
+    	//Submit query and get cursor.
         Cursor cursor = db.query(TABLE_TODOS, new String[] { KEY_ID,
                 KEY_TASK, KEY_DATE, KEY_HARDNESS, KEY_TIME_REQ }, KEY_TASK + "=?",
                 new String[] { task }, null, null, KEY_DATE + " ASC");
@@ -116,28 +111,14 @@ public class DBConnect extends SQLiteOpenHelper {
      */
     public ArrayList<Todo> getAllTodos(String start, String end){
     	SQLiteDatabase db = this.getReadableDatabase();
-        
+    	//Submit query and get cursor.
         Cursor cursor = db.query(TABLE_TODOS, new String[] { KEY_ID,
                 KEY_TASK, KEY_DATE, KEY_HARDNESS, KEY_TIME_REQ }, KEY_DATE + ">\"" + start + 
                 	"\" AND " + KEY_DATE + "<\"" + end + "\"", 
                 		null, null, null, KEY_DATE + " ASC");
         return convertCursorToArrayList(cursor);  
     }
-    
-    /*
- *     public ArrayList<Todo> getTodoList(String start, String end) {
-     	Cursor c = getAllTodos(start, end);
-    	return convertCursorToArrayList(c);
-    	/*
-    	if (c.moveToFirst()){
-    		do {
-    			Log.v("DBC hardness test", ""+c.getInt(3));
-    			out.add(new Todo(c.getString(1), c.getString(2), c.getInt(3), c.getInt(4)));
-    		
-    		} while (c.moveToNext());
-    	}
-    }
-*/
+
     
     /**
      * Convert a cursor over Todo items to an iterable ArrayList.
@@ -146,7 +127,9 @@ public class DBConnect extends SQLiteOpenHelper {
      */
     public ArrayList<Todo> convertCursorToArrayList(Cursor c) {
     	ArrayList<Todo> list = new ArrayList<Todo>();
+    	//Iterate through each item in cursor.
     	for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+    		//Add new todo item to list.
     		list.add(new Todo(c.getString(1), c.getString(2), c.getInt(3), c.getInt(4)));
     	}
     	return list;
