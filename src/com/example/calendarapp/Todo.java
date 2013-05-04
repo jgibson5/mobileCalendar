@@ -2,7 +2,7 @@ package com.example.calendarapp;
 
 import java.io.Serializable;
 
-/*
+/**
  * Class: Todo
  * -------------------------------------
  * A Todo stores all the information for a new task the user needs

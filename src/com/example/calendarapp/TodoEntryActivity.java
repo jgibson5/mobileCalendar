@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 
 
-/*
+/**
  * Class: TodoEntryActivity
  * ---------------------------------------------
  * This activity is the interface where new todos are entered.
@@ -33,7 +33,7 @@ public class TodoEntryActivity extends Activity {
     private Integer[] durationsValueList = {5, 10, 15, 30, 45, 60, 90, 120, 240, 480, 1000};
     
     
-    /*
+    /**
      * Function: onCreate
      * --------------------------------------
      * This function enables the user to specify the new todo item, with features
@@ -66,7 +66,7 @@ public class TodoEntryActivity extends Activity {
 	}
 	
 	
-	/*
+	/**
 	 * Function: getStringResources
 	 * ---------------------------------------------
 	 * This function sends the seek bar a duration value
@@ -93,7 +93,7 @@ public class TodoEntryActivity extends Activity {
 	}
 
 	
-	/*
+	/**
 	 * Function: onCreateOptionsMenu
 	 * ---------------------------------------------------
 	 * (non-Javadoc)
@@ -125,11 +125,12 @@ public class TodoEntryActivity extends Activity {
 	}
 	
 	
-	/*
+	/**
 	 * Function: saveTodo
 	 * -------------------------------------------------
 	 * This function is called when the user clicks the Save button.
 	 * It sends the inputted information via an intent to MainActivity.
+	 * @param view
 	 */
 	
 	public void saveTodo(View view) {
@@ -148,17 +149,16 @@ public class TodoEntryActivity extends Activity {
 		finish();
 	}
 	
-	/*
+	/**
 	 * Function: cancel
 	 * ------------------------------------------
 	 * This function returns to the home screen without saving.
+	 * @param view
 	 */
-	
 	
 	public void cancel(View view) {
 		setResult(RESULT_CANCELED);
 		finish();
 	}
-
 
 }

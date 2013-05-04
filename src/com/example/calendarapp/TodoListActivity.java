@@ -13,7 +13,9 @@ import android.view.MenuItem;
 public class TodoListActivity extends Activity {
 
 
-	/*
+	/**
+	 * Function: onCreate
+	 * ----------------------------------------
 	 * (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 * 
@@ -23,7 +25,6 @@ public class TodoListActivity extends Activity {
 	 * PlaceableListViewAdapter.
 	 * 
 	 */
-	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class TodoListActivity extends Activity {
 		listView.setAdapter(testAdapter);
 	}
 
-	/*
+	/**
 	 * Function: onCreateOptionsMenu
 	 * ---------------------------------------------------
 	 * Menu Inflator "inflates the menu"; this adds items to the action bar if it is present.

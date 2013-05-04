@@ -16,7 +16,12 @@ public class TodoHardnessComparator implements Comparator<Todo>{
 		// TODO Auto-generated constructor stub
 	}
 
-
+	/**
+	 * Function: compare
+	 * -----------------------------------------------
+	 * This function sorts first by due date, and then decreasing hardness
+	 * within the due date. 
+	 */
 	@Override
 	public int compare(Todo todo0, Todo todo1) {
 		if (todo0.getDate().substring(0, 10).compareTo(todo1.getDate().substring(0, 10)) > 0) {
