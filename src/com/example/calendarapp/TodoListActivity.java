@@ -25,8 +25,8 @@ public class TodoListActivity extends Activity {
 		//get the list of events
 		
 		//create final list of todos and events
-		ArrayList<Placeable> placeable = new ArrayList<Placeable>();
-		
+		//ArrayList<Placeable> placeable = new ArrayList<Placeable>();
+		ArrayList<Placeable> placeable = EventGetter.getEvents(this);
 		//create AvailableTimes object with events
 		
 		// for each of the prioritized list of todos

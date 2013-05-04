@@ -90,6 +90,10 @@ public class Event extends Placeable implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public long getDuration() {
+		return Math.round(end.getMillis() - start.getMillis() / (60 * 60 * 1000));
+	}
 
 	@Override
 	void doEdit() {
