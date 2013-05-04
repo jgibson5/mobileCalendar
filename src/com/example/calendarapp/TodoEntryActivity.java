@@ -15,6 +15,15 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+
+
+/*
+ * Class: TodoEntryActivity
+ * ---------------------------------------------
+ * This activity is the interface where new todos are entered.
+ * (JAVADOCS)
+ */
+
 public class TodoEntryActivity extends Activity {
 
 	// In order for the next activity to query the extra data, 
@@ -22,6 +31,17 @@ public class TodoEntryActivity extends Activity {
     public final static String EXTRA_MESSAGE = "com.example.calendarapp.MESSAGE";
     private ArrayList<String> durationsTextList;
     private Integer[] durationsValueList = {5, 10, 15, 30, 45, 60, 90, 120, 240, 480, 1000};
+    
+    
+    /*
+     * Function: onCreate
+     * --------------------------------------
+     * This function enables the user to specify the new todo item, with features
+     * for adding the name, due date, and seek bars for "hardness" and time required.
+     * 
+     * (non-Javadoc)
+     * @see android.app.Activity#onCreate(android.os.Bundle)
+     */
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +65,15 @@ public class TodoEntryActivity extends Activity {
 	   });
 	}
 	
+	
+	/*
+	 * Function: getStringResources
+	 * ---------------------------------------------
+	 * This function sends the seek bar a duration value
+	 * so it displays how the time required according to the
+	 * strings.xml file.
+	 */
+	
 	private void getStringResources(){
 		durationsTextList = new ArrayList<String>(){
 			private static final long serialVersionUID = 1L;
@@ -63,6 +92,14 @@ public class TodoEntryActivity extends Activity {
 	    }};
 	}
 
+	
+	/*
+	 * Function: onCreateOptionsMenu
+	 * ---------------------------------------------------
+	 * (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -87,7 +124,14 @@ public class TodoEntryActivity extends Activity {
 		}
 	}
 	
-	/** Called when the user clicks the Save button */
+	
+	/*
+	 * Function: saveTodo
+	 * -------------------------------------------------
+	 * This function is called when the user clicks the Save button.
+	 * It sends the inputted information via an intent to MainActivity.
+	 */
+	
 	public void saveTodo(View view) {
 		Intent intent = new Intent(this, MainActivity.class);
 		EditText todoText = (EditText) findViewById(R.id.todoName);
@@ -103,6 +147,13 @@ public class TodoEntryActivity extends Activity {
 		setResult(RESULT_OK, intent);
 		finish();
 	}
+	
+	/*
+	 * Function: cancel
+	 * ------------------------------------------
+	 * This function returns to the home screen without saving.
+	 */
+	
 	
 	public void cancel(View view) {
 		setResult(RESULT_CANCELED);

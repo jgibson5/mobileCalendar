@@ -12,6 +12,19 @@ import android.view.MenuItem;
 
 public class TodoListActivity extends Activity {
 
+
+	/*
+	 * (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 * 
+	 * Retrieves list of todos and events, orders todos and events
+	 * based off available times between events and priority
+	 * of todos. It then sends these "Placeable" objects to the
+	 * PlaceableListViewAdapter.
+	 * 
+	 */
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -50,16 +63,22 @@ public class TodoListActivity extends Activity {
 		listView.setAdapter(testAdapter);
 	}
 
-
+	/*
+	 * Function: onCreateOptionsMenu
+	 * ---------------------------------------------------
+	 * Menu Inflator "inflates the menu"; this adds items to the action bar if it is present.
+	 * (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 * 
+	 */
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.todo_list, menu);
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, ActionBar.DISPLAY_HOME_AS_UP);
 		return true;
 	}
-
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
