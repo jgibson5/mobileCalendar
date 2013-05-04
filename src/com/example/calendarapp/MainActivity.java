@@ -5,7 +5,6 @@ import com.example.calendarapp.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,7 +33,7 @@ public class MainActivity extends Activity {
 	}
 	
 	/**
-	 * Starts the Placeable list activity
+	 * Create an Intent and launch TodoListActivity. 
 	 * @param view
 	 */
 	public void gotoList(View view){
@@ -87,7 +86,7 @@ public class MainActivity extends Activity {
 	}
 	
 	/**
-	 * Creates an intent for Todo entry.
+	 * Create an intent and launch TodoEntryActivity.
 	 */
 	private void startTodoEntry() {
     	Intent intent = new Intent(this, TodoEntryActivity.class);

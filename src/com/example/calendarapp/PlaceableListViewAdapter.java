@@ -100,7 +100,7 @@ public class PlaceableListViewAdapter extends ArrayAdapter<Placeable>{
         convertView.setBackgroundColor(color);
         holder.descriptionView.setText(placeable.getDescription());
         holder.startView.setText(placeable.getStart().toString());
-        holder.durationView.setText(placeable.getDuration() + "minutes");
+        holder.durationView.setText(placeable.getDuration() + " minutes");
  
         return convertView;
     }
