@@ -1,9 +1,7 @@
-/**
- * 
- */
 package com.example.calendarapp;
 
 /**
+ * Class for wrapping the Todo when it has been placed in a time slot.
  * @author hari
  *
  */
@@ -11,7 +9,9 @@ public class PlacedTodo extends Placeable{
 
 	protected Todo todo;
 	/**
-	 * 
+	 * Constructor for PlacedTodo. Takes in a Todo todo and DateTime start.
+	 * @param todo
+	 * @param start
 	 */
 	public PlacedTodo(Todo todo, DateTime start) {
 		this.todo = todo;
@@ -21,6 +21,11 @@ public class PlacedTodo extends Placeable{
 		this.description = this.todo.getTodo(); 
 	}
 
+	/**
+	 * Callback for the ListView to execute when the PlacedTodo is tapped.
+	 * 
+	 * NOT IMPLEMENTED
+	 */
 	@Override
 	void doEdit() {
 		// what happens when you choose to edit it
@@ -30,7 +35,6 @@ public class PlacedTodo extends Placeable{
 
 	@Override
 	public int getHardness() {
-		// TODO Auto-generated method stub
 		return todo.getHardness();
 	}
 

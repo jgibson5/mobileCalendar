@@ -12,36 +12,69 @@ public class Event extends Placeable implements Serializable{
 	private DateTime end;
 	private String description;
 	
+	/**
+	 * Create new event.
+	 * @param start
+	 * @param end
+	 * @param description
+	 */
 	public Event(DateTime start, DateTime end, String description) {
 		setStart(start);
 		setEnd(end);
 		setDescription(description);
 	}
 	
+	/**
+	 * Create new event.
+	 * @param start
+	 * @param end
+	 * @param description
+	 * @throws ParseException
+	 */
 	public Event(String start, String end, String description) throws ParseException {
 		this.start = new DateTime(start);
 		this.end = new DateTime(end);
 		setDescription(description);
 	}
 	
+	/**
+	 * Create new event.
+	 * @param start
+	 * @param end
+	 * @param description
+	 */
 	public Event(Long start, Long end, String description){
 		this.start = new DateTime(start);
 		this.end = new DateTime(end);
 		setDescription(description);
 	}
 	
+	/**
+	 * Create new event.
+	 * @param start
+	 * @param duration
+	 * @param description
+	 */
 	public Event(Long start, String duration, String description){
 		this.start = new DateTime(start);
 		this.end = new DateTime(endFromDuration(start, duration));
 		setDescription(description);
 	}
 	
+	/**
+	 * Return an end time provided a start time & string version of a duration.
+	 * @param start
+	 * @param duration
+	 * @return
+	 */
 	public Long endFromDuration(Long start, String duration){
 		Long nd = start;
+		//Define regex pattern to match duration format.
 		Pattern pattern = Pattern.compile("([0-9]*[D|H|M|S])");
 		Matcher matcher = pattern.matcher(duration);
 		while (matcher.find()) {
             String group = matcher.group();
+            //Because 1.6 doesn't support switch case with strings...
             if (group.charAt(group.length()-1) == 'D'){
             	String numbers = group.substring(0, group.length()-1);
             	int millis = Integer.parseInt(numbers);
@@ -92,7 +125,7 @@ public class Event extends Placeable implements Serializable{
 	}
 	
 	public long getDuration() {
-		return Math.round(end.getMillis() - start.getMillis() / (60 * 60 * 1000));
+		return Math.round((end.getMillis() - start.getMillis()) / (60 * 1000));
 	}
 
 	@Override

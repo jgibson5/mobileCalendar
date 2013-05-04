@@ -14,6 +14,7 @@ import java.util.NoSuchElementException;
  * This uses a linked list to store Integers, and each bit of the Integer to store a
  * boolean value.
  *
+ * @author rbutler
  */
 public class BitList implements List<Boolean>, Iterable<Boolean>, Cloneable {
 	private LinkedList<Integer> ints = new LinkedList<Integer>();

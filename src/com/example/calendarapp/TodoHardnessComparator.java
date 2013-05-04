@@ -2,9 +2,6 @@ package com.example.calendarapp;
 
 import java.util.Comparator;
 
-
-
-
 /**
  * Class: TodoHardnessComparator
  * ------------------------------------------
@@ -12,7 +9,6 @@ import java.util.Comparator;
  * if a todo is of a greater "hardness" than another. It prioritizes
  * the item that is harder to do.
  */
-
 
 public class TodoHardnessComparator implements Comparator<Todo>{
 

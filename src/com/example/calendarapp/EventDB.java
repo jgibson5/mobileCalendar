@@ -16,10 +16,10 @@ public class EventDB extends SQLiteOpenHelper {
     // Database Name
     private static final String DATABASE_NAME = "eventManager";
  
-    // Contacts table name
+    // Events table name
     private static final String TABLE_EVENTS = "events";
  
-    // Contacts Table Columns names
+    // Events Table Columns names
     private static final String KEY_ID = "_id";
     private static final String KEY_START = "task";
     private static final String KEY_END = "date";
@@ -27,6 +27,10 @@ public class EventDB extends SQLiteOpenHelper {
     public static final String START_DATE = "0000/00/00 00:00";
     public static final String END_DATE = "9999/99/99 99:99";
  
+    /**
+     * Create new EventDB.
+     * @param context
+     */
     public EventDB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -51,11 +55,12 @@ public class EventDB extends SQLiteOpenHelper {
     }
     
     
-    /**
-     * All CRUD(Create, Read, Update, Delete) Operations
-     */
  
-    // Adding new contact
+  
+    /**
+     * Add single event to database.
+     * @param event
+     */
     void addEvent(Event event) {
         SQLiteDatabase db = this.getWritableDatabase();
  
@@ -69,31 +74,49 @@ public class EventDB extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
     
+    
+    /**
+     * Retrieve single event whose description matches task.
+     * @param task
+     * @return
+     */
     public Event getEvent(String task) {
         SQLiteDatabase db = this.getReadableDatabase();
-     
+      //Submit query and get cursor.
         Cursor cursor = db.query(TABLE_EVENTS, new String[] { KEY_ID,
                 KEY_START, KEY_END, KEY_DESCRIPTION}, KEY_START + "=?",
                 new String[] { task }, null, null, KEY_END + " ASC");
         if (cursor != null)
             cursor.moveToFirst();
-        Event event = new Event(cursor.getLong(1), cursor.getLong(2), cursor.getString(3) );
+        Event event = new Event(cursor.getLong(1), cursor.getLong(2), 
+        		cursor.getString(3) );
         // return event
         return event;
     }
     
+    /**
+     * Retrieve all events whose description matches task.
+     * @param task
+     * @return
+     */
     public ArrayList<Event> getEvents(String task) {
     	SQLiteDatabase db = this.getReadableDatabase();
-        
+    	//Submit query and get cursor.
         Cursor cursor = db.query(TABLE_EVENTS, new String[] { KEY_ID,
                 KEY_START, KEY_END, KEY_DESCRIPTION}, KEY_START + "=?",
                 new String[] { task }, null, null, KEY_END + " ASC");
         return convertCursorToArrayList(cursor);       
     }
     
+    /**
+     * Retreive all events in the database that fall between given times.
+     * @param start
+     * @param end
+     * @return
+     */
     public ArrayList<Event> getAllEvents(String start, String end){
     	SQLiteDatabase db = this.getReadableDatabase();
-        
+    	//Submit query and get cursor.
         Cursor cursor = db.query(TABLE_EVENTS, new String[] { KEY_ID,
                 KEY_START, KEY_END, KEY_DESCRIPTION}, KEY_END + ">\"" + start + 
                 	"\" AND " + KEY_END + "<\"" + end + "\"", 
@@ -101,24 +124,16 @@ public class EventDB extends SQLiteOpenHelper {
         return convertCursorToArrayList(cursor);  
     }
     
-    /*
- *     public ArrayList<Todo> getTodoList(String start, String end) {
-     	Cursor c = getAllTodos(start, end);
-    	return convertCursorToArrayList(c);
-    	/*
-    	if (c.moveToFirst()){
-    		do {
-    			Log.v("DBC hardness test", ""+c.getInt(3));
-    			out.add(new Todo(c.getString(1), c.getString(2), c.getInt(3), c.getInt(4)));
-    		
-    		} while (c.moveToNext());
-    	}
-    }
-*/
-    
+    /**
+     * Convert event cursor into ArrayList of events.
+     * @param c
+     * @return
+     */
     public ArrayList<Event> convertCursorToArrayList(Cursor c) {
     	ArrayList<Event> list = new ArrayList<Event>();
+    	//Iterate over events in cursor.
     	for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+    		//Add each event to the list.
     		list.add(new Event(c.getLong(1), c.getLong(2), c.getString(3)));
     	}
     	return list;
