@@ -6,11 +6,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class DateTime implements Serializable, Cloneable, Comparable<DateTime> {
+/**
+ * A specific point in time.
+ * 
+ * Includes methods for interoperating with out String date format.
+ * 
+ * @author rbutler
+ *
+ */
+public class DateTime 
+		implements Serializable, Cloneable, Comparable<DateTime> {
+	
 	private static final long serialVersionUID = -48980714199406187L;
 	
 	private long millis = 0;
-	private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.US);
+	private static SimpleDateFormat dateFormat = 
+			new SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.US);
 	
 	/**
 	 * Create a new DateTime object for right now.
@@ -81,7 +92,9 @@ public class DateTime implements Serializable, Cloneable, Comparable<DateTime> {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) return false;
-		if (obj.getClass() == this.getClass()) return this.compareTo((DateTime) obj) == 0;
+		if (obj.getClass() == this.getClass()) {
+			return this.compareTo((DateTime) obj) == 0;
+		}
 		return false;
 	}
 
