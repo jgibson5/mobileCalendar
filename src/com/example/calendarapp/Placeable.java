@@ -1,9 +1,8 @@
-/**
- * 
- */
 package com.example.calendarapp;
 
 /**
+ * Abstract class representing a todo or event that can be placed in a ListView
+ * Extended by Event and PlacedTodo
  * @author hari
  *
  */
@@ -13,11 +12,11 @@ public abstract class Placeable implements Comparable<Placeable> {
 	protected DateTime start;
 	protected DateTime end;
 	
-	public Placeable() {
-		// TODO Auto-generated constructor stub
-	}
+	public Placeable() {}
 	
-	// enables editing if it's a todo, and not if it's an event
+	/** 
+	 * enables editing callback based off of child class
+	 */
 	abstract void doEdit();
 	
 	public DateTime getStart() {
@@ -32,12 +31,23 @@ public abstract class Placeable implements Comparable<Placeable> {
 		return this.description;
 	}
 	
+	/**
+	 * Get duration in minutes
+	 * @return long
+	 */
 	public long getDuration() {
 		return Math.round(end.getMillis() - start.getMillis() / (60 * 60 * 1000));
 	}
 	
+	/**
+	 * Child class must override because hardness only makes sense for Todos.
+	 * Events should return 0
+	 */
 	public abstract int getHardness();
 	
+	/**
+	 * Compare the start times of two Placeables
+	 */
 	public int compareTo(Placeable another) {
 		return start.compareTo(another.getStart());
 	}
