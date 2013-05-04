@@ -5,7 +5,7 @@ public class AvailableTimes {
 	DateTime start;
 	DateTime end;
 	
-	public AvailableTimes(Iterable<Event> events) {
+	public AvailableTimes(Iterable<Placeable> events) {
 		times = new BitList();
 		start = new DateTime();
 		end = start.clone();
@@ -16,8 +16,8 @@ public class AvailableTimes {
 		paint(events);
 	}
 	
-	public void paint(Iterable<Event> events) {
-		for (Event event: events) {
+	public void paint(Iterable<Placeable> events) {
+		for (Placeable event: events) {
 			paint(event);
 		}
 	}

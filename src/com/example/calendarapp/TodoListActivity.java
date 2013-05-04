@@ -26,8 +26,11 @@ public class TodoListActivity extends Activity {
 		
 		//create final list of todos and events
 		//ArrayList<Placeable> placeable = new ArrayList<Placeable>();
-		ArrayList<Placeable> placeable = EventGetter.getEvents(this);
+		ArrayList<Placeable> events = EventGetter.getEvents(this);
 		//create AvailableTimes object with events
+		
+		AvailableTimes availableTimes = new AvailableTimes(events);
+		ArrayList<Placeable> placeables = new ArrayList<Placeable>(events);
 		
 		// for each of the prioritized list of todos
 		// toss it in AvailableTimes and insert todo with time into todoable
@@ -35,9 +38,15 @@ public class TodoListActivity extends Activity {
 		
 		// doesn't include printing out event....
 		
+		for (Todo todo : list) {
+			placeables.add(availableTimes.placedTodo(todo));
+		}
+		
+		Collections.sort(placeables);
+		
 		PlaceableListView listView = (PlaceableListView) findViewById(R.id.todoListView);
 
-		PlaceableListViewAdapter testAdapter = new PlaceableListViewAdapter(this, R.layout.placeable_list_text_view, placeable);
+		PlaceableListViewAdapter testAdapter = new PlaceableListViewAdapter(this, R.layout.placeable_list_text_view, placeables);
 		listView.setAdapter(testAdapter);
 	}
 
