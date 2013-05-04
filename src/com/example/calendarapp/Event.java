@@ -12,30 +12,61 @@ public class Event extends Placeable implements Serializable{
 	private DateTime end;
 	private String description;
 	
+	/**
+	 * Create new event.
+	 * @param start
+	 * @param end
+	 * @param description
+	 */
 	public Event(DateTime start, DateTime end, String description) {
 		setStart(start);
 		setEnd(end);
 		setDescription(description);
 	}
 	
+	/**
+	 * Create new event.
+	 * @param start
+	 * @param end
+	 * @param description
+	 * @throws ParseException
+	 */
 	public Event(String start, String end, String description) throws ParseException {
 		this.start = new DateTime(start);
 		this.end = new DateTime(end);
 		setDescription(description);
 	}
 	
+	/**
+	 * Create new event.
+	 * @param start
+	 * @param end
+	 * @param description
+	 */
 	public Event(Long start, Long end, String description){
 		this.start = new DateTime(start);
 		this.end = new DateTime(end);
 		setDescription(description);
 	}
 	
+	/**
+	 * Create new event.
+	 * @param start
+	 * @param duration
+	 * @param description
+	 */
 	public Event(Long start, String duration, String description){
 		this.start = new DateTime(start);
 		this.end = new DateTime(endFromDuration(start, duration));
 		setDescription(description);
 	}
 	
+	/**
+	 * Return an end time provided a start time & string version of a duration.
+	 * @param start
+	 * @param duration
+	 * @return
+	 */
 	public Long endFromDuration(Long start, String duration){
 		Long nd = start;
 		Pattern pattern = Pattern.compile("([0-9]*[D|H|M|S])");
@@ -92,7 +123,7 @@ public class Event extends Placeable implements Serializable{
 	}
 	
 	public long getDuration() {
-		return Math.round(end.getMillis() - start.getMillis() / (60 * 60 * 1000));
+		return Math.round((end.getMillis() - start.getMillis()) / (60 * 1000));
 	}
 
 	@Override

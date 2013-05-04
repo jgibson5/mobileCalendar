@@ -5,7 +5,6 @@ import com.example.calendarapp.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +24,10 @@ public class MainActivity extends Activity {
 		startTodoEntry();
 	}
 	
+	/**
+	 * Create an Intent and launch TodoListActivity. 
+	 * @param view
+	 */
 	public void gotoList(View view){
 		Intent intent = new Intent(this, TodoListActivity.class);
     	startActivity(intent);
@@ -63,6 +66,9 @@ public class MainActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * Create an intent and launch TodoEntryActivity.
+	 */
 	private void startTodoEntry() {
     	Intent intent = new Intent(this, TodoEntryActivity.class);
     	startActivityForResult(intent, NEW_TODO_REQUEST);

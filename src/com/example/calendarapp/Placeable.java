@@ -33,7 +33,7 @@ public abstract class Placeable implements Comparable<Placeable> {
 	}
 	
 	public long getDuration() {
-		return Math.round(end.getMillis() - start.getMillis() / (60 * 60 * 1000));
+		return Math.round((end.getMillis() - start.getMillis()) / (60 * 1000));
 	}
 	
 	public abstract int getHardness();

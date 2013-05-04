@@ -6,13 +6,17 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.util.Log;
 
 public class EventGetter {
 	
 	private static final long time = System.currentTimeMillis();
 	
 	
+	/**
+	 * Return ArrayList of events from phone's calendar provider.
+	 * @param context
+	 * @return
+	 */
 	public static ArrayList<Placeable> getEvents(Context context){
 		DecimalFormat format = new DecimalFormat("######0000");
 		format.setRoundingMode(RoundingMode.FLOOR);
@@ -21,6 +25,12 @@ public class EventGetter {
 		return EventGetter.getEvents(context, startDate);
 	}
 	
+	/**
+	 * Return ArrayList of all events over next 24 hours from startDate.
+	 * @param context
+	 * @param startDate
+	 * @return
+	 */
 	public static ArrayList<Placeable> getEvents(Context context, long startDate){
 		
 		long endDate = startDate + 86400000;

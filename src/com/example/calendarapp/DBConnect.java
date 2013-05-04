@@ -6,7 +6,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.*;
-import android.util.Log;
 
 public class DBConnect extends SQLiteOpenHelper {
 	 
@@ -57,7 +56,11 @@ public class DBConnect extends SQLiteOpenHelper {
      * All CRUD(Create, Read, Update, Delete) Operations
      */
  
-    // Adding new contact
+    
+    /**
+     * Add a single Todo to the database.
+     * @param todo
+     */
     void addTodo(Todo todo) {
         SQLiteDatabase db = this.getWritableDatabase();
  
@@ -72,6 +75,11 @@ public class DBConnect extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
     
+    /**
+     * Retrieve a single Todo from database whose description matches task.
+     * @param task
+     * @return
+     */
     public Todo getTodo(String task) {
         SQLiteDatabase db = this.getReadableDatabase();
      
@@ -86,6 +94,11 @@ public class DBConnect extends SQLiteOpenHelper {
         return todo;
     }
     
+    /**
+     * Get all todos whose description matches task.
+     * @param task
+     * @return
+     */
     public ArrayList<Todo> getTodos(String task) {
     	SQLiteDatabase db = this.getReadableDatabase();
         
@@ -95,6 +108,12 @@ public class DBConnect extends SQLiteOpenHelper {
         return convertCursorToArrayList(cursor);       
     }
     
+    /**
+     * Get all todos from the database between the provided start and end times.
+     * @param start
+     * @param end
+     * @return
+     */
     public ArrayList<Todo> getAllTodos(String start, String end){
     	SQLiteDatabase db = this.getReadableDatabase();
         
@@ -120,6 +139,11 @@ public class DBConnect extends SQLiteOpenHelper {
     }
 */
     
+    /**
+     * Convert a cursor over Todo items to an iterable ArrayList.
+     * @param c
+     * @return
+     */
     public ArrayList<Todo> convertCursorToArrayList(Cursor c) {
     	ArrayList<Todo> list = new ArrayList<Todo>();
     	for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {

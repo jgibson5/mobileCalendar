@@ -27,6 +27,10 @@ public class EventDB extends SQLiteOpenHelper {
     public static final String START_DATE = "0000/00/00 00:00";
     public static final String END_DATE = "9999/99/99 99:99";
  
+    /**
+     * Create new EventDB.
+     * @param context
+     */
     public EventDB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -51,11 +55,12 @@ public class EventDB extends SQLiteOpenHelper {
     }
     
     
-    /**
-     * All CRUD(Create, Read, Update, Delete) Operations
-     */
  
-    // Adding new contact
+  
+    /**
+     * Add single event to database.
+     * @param event
+     */
     void addEvent(Event event) {
         SQLiteDatabase db = this.getWritableDatabase();
  
@@ -69,6 +74,12 @@ public class EventDB extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
     
+    
+    /**
+     * Retrieve single event whose description matches task.
+     * @param task
+     * @return
+     */
     public Event getEvent(String task) {
         SQLiteDatabase db = this.getReadableDatabase();
      
@@ -77,11 +88,17 @@ public class EventDB extends SQLiteOpenHelper {
                 new String[] { task }, null, null, KEY_END + " ASC");
         if (cursor != null)
             cursor.moveToFirst();
-        Event event = new Event(cursor.getLong(1), cursor.getLong(2), cursor.getString(3) );
+        Event event = new Event(cursor.getLong(1), cursor.getLong(2), 
+        		cursor.getString(3) );
         // return event
         return event;
     }
     
+    /**
+     * Retrieve all events whose description matches task.
+     * @param task
+     * @return
+     */
     public ArrayList<Event> getEvents(String task) {
     	SQLiteDatabase db = this.getReadableDatabase();
         
@@ -91,6 +108,12 @@ public class EventDB extends SQLiteOpenHelper {
         return convertCursorToArrayList(cursor);       
     }
     
+    /**
+     * Retreive all events in the database that fall between given times.
+     * @param start
+     * @param end
+     * @return
+     */
     public ArrayList<Event> getAllEvents(String start, String end){
     	SQLiteDatabase db = this.getReadableDatabase();
         
@@ -101,21 +124,11 @@ public class EventDB extends SQLiteOpenHelper {
         return convertCursorToArrayList(cursor);  
     }
     
-    /*
- *     public ArrayList<Todo> getTodoList(String start, String end) {
-     	Cursor c = getAllTodos(start, end);
-    	return convertCursorToArrayList(c);
-    	/*
-    	if (c.moveToFirst()){
-    		do {
-    			Log.v("DBC hardness test", ""+c.getInt(3));
-    			out.add(new Todo(c.getString(1), c.getString(2), c.getInt(3), c.getInt(4)));
-    		
-    		} while (c.moveToNext());
-    	}
-    }
-*/
-    
+    /**
+     * Convert event cursor into ArrayList of events.
+     * @param c
+     * @return
+     */
     public ArrayList<Event> convertCursorToArrayList(Cursor c) {
     	ArrayList<Event> list = new ArrayList<Event>();
     	for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {

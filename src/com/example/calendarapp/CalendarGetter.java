@@ -3,10 +3,15 @@ package com.example.calendarapp;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.CalendarContract.Calendars;
-import android.util.Log;
 
 public class CalendarGetter {
-	public static void getCalendars(Context context){
+	
+	
+	/**
+	 * @param context
+	 * @return Cursor over all available calendars.
+	 */
+	public static Cursor getCalendars(Context context){
 		String[] projection = 
 		      new String[]{
 		            Calendars._ID, 
@@ -22,15 +27,6 @@ public class CalendarGetter {
 		                  Calendars.VISIBLE + " = 1", 
 		                  null, 
 		                  Calendars._ID + " ASC");
-		if (calCursor.moveToFirst()) {
-		   do {
-			  for(int i=0; i < 6; i++){
-				  String data = calCursor.getString(i);
-				  if(data != null){
-					  //Log.v(calCursor.getColumnName(i), data);
-				  }
-			  }
-		   } while (calCursor.moveToNext());
-		}
+		return calCursor;
 	}
 }
