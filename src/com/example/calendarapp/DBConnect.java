@@ -37,7 +37,8 @@ public class DBConnect extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TODOS_TABLE = "CREATE TABLE " + TABLE_TODOS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_TASK + " TEXT,"
-                + KEY_DATE + " TEXT," + KEY_HARDNESS + " int," + KEY_TIME_REQ + " int" + ")";
+                + KEY_DATE + " TEXT," + KEY_HARDNESS + " int," + 
+                KEY_TIME_REQ + " int" + ")";
         db.execSQL(CREATE_TODOS_TABLE);
     }
  
@@ -79,7 +80,8 @@ public class DBConnect extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         //Submit query and get cursor.
         Cursor cursor = db.query(TABLE_TODOS, new String[] { KEY_ID,
-                KEY_TASK, KEY_DATE, KEY_HARDNESS, KEY_TIME_REQ }, KEY_TASK + "=?",
+                KEY_TASK, KEY_DATE, KEY_HARDNESS, KEY_TIME_REQ }, KEY_TASK
+                + "=?",
                 new String[] { task }, null, null, KEY_DATE + " ASC");
         //Move to first item in cursor.
         if (cursor != null)
@@ -98,7 +100,8 @@ public class DBConnect extends SQLiteOpenHelper {
     	SQLiteDatabase db = this.getReadableDatabase();
     	//Submit query and get cursor.
         Cursor cursor = db.query(TABLE_TODOS, new String[] { KEY_ID,
-                KEY_TASK, KEY_DATE, KEY_HARDNESS, KEY_TIME_REQ }, KEY_TASK + "=?",
+                KEY_TASK, KEY_DATE, KEY_HARDNESS, KEY_TIME_REQ }, KEY_TASK
+                + "=?",
                 new String[] { task }, null, null, KEY_DATE + " ASC");
         return convertCursorToArrayList(cursor);       
     }
@@ -130,7 +133,8 @@ public class DBConnect extends SQLiteOpenHelper {
     	//Iterate through each item in cursor.
     	for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
     		//Add new todo item to list.
-    		list.add(new Todo(c.getString(1), c.getString(2), c.getInt(3), c.getInt(4)));
+    		list.add(new Todo(c.getString(1), c.getString(2), c.getInt(3),
+    				c.getInt(4)));
     	}
     	return list;
     }

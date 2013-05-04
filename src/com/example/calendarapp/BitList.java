@@ -9,10 +9,12 @@ import java.util.NoSuchElementException;
 
 
 /**
+ * Class: BitList
+ * ----------------------------------------------------------
  * An implementation of List for manipulating binary data.
  * 
- * This uses a linked list to store Integers, and each bit of the Integer to store a
- * boolean value.
+ * This uses a linked list to store Integers, and each bit of the Integer 
+ * to store a boolean value.
  *
  * @author rbutler
  */
@@ -160,7 +162,8 @@ public class BitList implements List<Boolean>, Iterable<Boolean>, Cloneable {
 	}
 	
 	/**
-	 * Add trues and falses to the list from 1's and 0's in a CharacterSequence.
+	 * Add trues and falses to the list from 1's and 0's in a 
+	 * CharacterSequence.
 	 * 
 	 * Skips all other characters.
 	 * 
@@ -281,7 +284,8 @@ public class BitList implements List<Boolean>, Iterable<Boolean>, Cloneable {
 	}
 	
 	private void checkIndex(int index) {
-		if (index >= length || index < 0) throw new IndexOutOfBoundsException();
+		if (index >= length || index < 0)
+			throw new IndexOutOfBoundsException();
 	}
 	
 	private void checkNull(Object element) {

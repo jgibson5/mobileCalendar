@@ -31,7 +31,8 @@ public class Event extends Placeable implements Serializable{
 	 * @param description
 	 * @throws ParseException
 	 */
-	public Event(String start, String end, String description) throws ParseException {
+	public Event(String start, String end, String description)
+			throws ParseException {
 		this.start = new DateTime(start);
 		this.end = new DateTime(end);
 		setDescription(description);
@@ -62,7 +63,8 @@ public class Event extends Placeable implements Serializable{
 	}
 	
 	/**
-	 * Return an end time provided a start time & string version of a duration.
+	 * Return an end time provided a start time & string version of a 
+	 * duration.
 	 * @param start
 	 * @param duration
 	 * @return

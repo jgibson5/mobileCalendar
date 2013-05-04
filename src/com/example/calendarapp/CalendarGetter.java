@@ -8,6 +8,9 @@ public class CalendarGetter {
 	
 	
 	/**
+	 * Function: getCalendars
+	 * -----------------------------------------
+	 * This function returns the calendars on the Android phone.
 	 * @param context
 	 * @return Cursor over all available calendars.
 	 */

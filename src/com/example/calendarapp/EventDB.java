@@ -118,8 +118,8 @@ public class EventDB extends SQLiteOpenHelper {
     	SQLiteDatabase db = this.getReadableDatabase();
     	//Submit query and get cursor.
         Cursor cursor = db.query(TABLE_EVENTS, new String[] { KEY_ID,
-                KEY_START, KEY_END, KEY_DESCRIPTION}, KEY_END + ">\"" + start + 
-                	"\" AND " + KEY_END + "<\"" + end + "\"", 
+                KEY_START, KEY_END, KEY_DESCRIPTION}, KEY_END + ">\"" 
+                		+ start + "\" AND " + KEY_END + "<\"" + end + "\"", 
                 		null, null, null, KEY_END + " ASC");
         return convertCursorToArrayList(cursor);  
     }

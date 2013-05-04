@@ -56,7 +56,8 @@ public class AvailableTimes {
 	 * @return
 	 */
 	public PlacedTodo placedTodo(Todo todo) {
-		PlacedTodo placedTodo = new PlacedTodo(todo, getFirstTime(todo.getTime_req()));
+		PlacedTodo placedTodo = new PlacedTodo(todo, 
+				getFirstTime(todo.getTime_req()));
 		paint(placedTodo.getStart(), placedTodo.getEnd());
 		return placedTodo;
 	}
