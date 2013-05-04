@@ -27,17 +27,21 @@ import android.widget.TextView;
 public class TodoEntryActivity extends Activity {
 
 	// In order for the next activity to query the extra data, 
-	//   you should define the key for your intent's extra using a public constant
-    public final static String EXTRA_MESSAGE = "com.example.calendarapp.MESSAGE";
+	// you should define the key for your intent's extra using a 
+	// public constant
+    public final static String EXTRA_MESSAGE = 
+    		"com.example.calendarapp.MESSAGE";
     private ArrayList<String> durationsTextList;
-    private Integer[] durationsValueList = {5, 10, 15, 30, 45, 60, 90, 120, 240, 480, 1000};
+    private Integer[] durationsValueList = 
+    	{5, 10, 15, 30, 45, 60, 90, 120, 240, 480, 1000};
     
     
     /**
      * Function: onCreate
      * --------------------------------------
-     * This function enables the user to specify the new todo item, with features
-     * for adding the name, due date, and seek bars for "hardness" and time required.
+     * This function enables the user to specify the new todo item, 
+     * with features for adding the name, due date, and seek bars for 
+     * "hardness" and time required.
      * 
      * (non-Javadoc)
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -49,7 +53,8 @@ public class TodoEntryActivity extends Activity {
 		setContentView(R.layout.activity_todo_entry);
 		getStringResources();
 		SeekBar durationBar = (SeekBar) findViewById(R.id.durationBar);
-		durationBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+		durationBar.setOnSeekBarChangeListener(
+				new SeekBar.OnSeekBarChangeListener() {
 	        @Override
 	        public void onStopTrackingTouch(SeekBar seekBar) {
 	        }
@@ -59,7 +64,8 @@ public class TodoEntryActivity extends Activity {
 	        @Override
 	        public void onProgressChanged(SeekBar seekBar, int progress,
 	                boolean fromUser) {
-	        	TextView durationText = (TextView) findViewById(R.id.durationText);
+	        	TextView durationText = (TextView) findViewById(
+	        			R.id.durationText);
 	    		durationText.setText(durationsTextList.get(progress));
 	        }
 	   });
@@ -102,10 +108,12 @@ public class TodoEntryActivity extends Activity {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.main, menu);
+		// Inflate the menu; this adds items to the action bar if it is 
+		// present.
+		// getMenuInflater().inflate(R.menu.main, menu);
 		ActionBar actionBar = getActionBar();
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, ActionBar.DISPLAY_HOME_AS_UP);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, 
+				ActionBar.DISPLAY_HOME_AS_UP);
 		return true;
 	}
 	
@@ -143,7 +151,8 @@ public class TodoEntryActivity extends Activity {
 		int duration = durBar.getProgress();
 		String todoStr = todoText.getText().toString();
 		String dateStr = dateText.getText().toString();
-		Todo todo = new Todo (todoStr, dateStr, priority, durationsValueList[duration]);
+		Todo todo = new Todo (todoStr, dateStr, priority, 
+				durationsValueList[duration]);
 		intent.putExtra("com.example.calendarapp.Todo", todo);
 		setResult(RESULT_OK, intent);
 		finish();

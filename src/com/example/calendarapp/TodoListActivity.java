@@ -33,7 +33,8 @@ public class TodoListActivity extends Activity {
 		setContentView(R.layout.activity_todo_list);
 		DBConnect dbc = new DBConnect(this);
 		//get the list of todos
-		ArrayList<Todo> list = dbc.getAllTodos(DBConnect.START_DATE, DBConnect.END_DATE);
+		ArrayList<Todo> list = dbc.getAllTodos(DBConnect.START_DATE, 
+				DBConnect.END_DATE);
 		//prioritize the todos
 		Collections.sort(list, new TodoHardnessComparator());
 		//get the list of events
@@ -58,16 +59,19 @@ public class TodoListActivity extends Activity {
 		
 		Collections.sort(placeables);
 		
-		PlaceableListView listView = (PlaceableListView) findViewById(R.id.todoListView);
+		PlaceableListView listView = (PlaceableListView) findViewById(
+				R.id.todoListView);
 
-		PlaceableListViewAdapter testAdapter = new PlaceableListViewAdapter(this, R.layout.placeable_list_text_view, placeables);
+		PlaceableListViewAdapter testAdapter = new PlaceableListViewAdapter(
+				this, R.layout.placeable_list_text_view, placeables);
 		listView.setAdapter(testAdapter);
 	}
 
 	/**
 	 * Function: onCreateOptionsMenu
 	 * ---------------------------------------------------
-	 * Menu Inflator "inflates the menu"; this adds items to the action bar if it is present.
+	 * Menu Inflator "inflates the menu"; this adds items to the action bar 
+	 * if it is present.
 	 * (non-Javadoc)
 	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
 	 * 
@@ -77,7 +81,8 @@ public class TodoListActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.todo_list, menu);
 		ActionBar actionBar = getActionBar();
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, ActionBar.DISPLAY_HOME_AS_UP);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP, 
+				ActionBar.DISPLAY_HOME_AS_UP);
 		return true;
 	}
 
