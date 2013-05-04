@@ -283,15 +283,39 @@ public class BitList implements List<Boolean>, Iterable<Boolean>, Cloneable {
 		return bits;
 	}
 	
+	/**
+	 * Throw an IndexOutOfBoundsException if index is invalid.
+	 * 
+	 * Should be called in every public-facing method that takes in an
+	 * index.
+	 * 
+	 * @param index
+	 */
 	private void checkIndex(int index) {
 		if (index >= length || index < 0)
 			throw new IndexOutOfBoundsException();
 	}
 	
+	/**
+	 * Throw a NullPointerException if element is null.
+	 * 
+	 * BitList doesn't support null elements. Public-facing methods should
+	 * call this to verify that a client-submitted element is not null.
+	 * 
+	 * @param element
+	 */
 	private void checkNull(Object element) {
 		if (element == null) throw new NullPointerException();
 	}
 	
+	/**
+	 * Get the entry at index.
+	 * 
+	 * Does not perform bounds checking.
+	 * 
+	 * @param index
+	 * @return
+	 */
 	private boolean uncheckedGet(int index) {
 		int longIndex = index / Integer.SIZE;
 		int bitIndex = index % Integer.SIZE;
@@ -299,12 +323,27 @@ public class BitList implements List<Boolean>, Iterable<Boolean>, Cloneable {
 		return (currentInt & (1 << bitIndex)) != 0;
 	}
 	
+	/**
+	 * Add an element to the end of the list.
+	 * 
+	 * Doesn't perform element verification.
+	 * 
+	 * @param element
+	 */
 	private void uncheckedAdd(boolean element) {
 		length++;
 		if (length % Integer.SIZE == 1) ints.add(0);
 		uncheckedSet(length - 1, element);
 	}
 	
+	/**
+	 * Set the entry at index to element.
+	 * 
+	 * Doesn't perform index checking or element verification.
+	 * 
+	 * @param index
+	 * @param element
+	 */
 	private void uncheckedSet(int index, boolean element) {
 		int intIndex = index / Integer.SIZE;
 		int bitIndex = index % Integer.SIZE;
