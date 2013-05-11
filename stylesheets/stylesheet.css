@@ -361,7 +361,7 @@ Full-Width Styles
 }
 
 .image {
-  width: 200px;
+  width: 175px;
 }
 
 #main_content_wrap {
@@ -376,6 +376,10 @@ Full-Width Styles
 
 #footer_wrap {
   background: #212121;
+}
+
+#uml {
+  width: 400px;
 }
 
 
